@@ -48,7 +48,8 @@ def merge_dict(dict1,dict2):
     '''
     keys = set(dict1).union(dict2)
     no = []
-    return dict((key,list(set(dict1.get(key,no)+dict2.get(key,no)))) for key in keys)
+    return dict((key,list(set(dict1.get(key,no)+dict2.get(key,no))))
+                for key in keys)
 
 def explore():
     tree = ET.parse(OSMFILE)
@@ -70,10 +71,13 @@ def explore():
     for child in root:
         if child.iter():
             sub_tags[child.tag] += Counter(count_tags(child))
-            sub_tags_attrib[child.tag] = merge_dict(sub_tags_attrib[child.tag],elem_attrib(child))
+            sub_tags_attrib[child.tag] = merge_dict(sub_tags_attrib[child.tag],
+                                                    elem_attrib(child))
 
-    print('\nDictionary of tags and their frequency in the lower level elements:')
+    print(
+    '\nDictionary of tags and their frequency in the lower level elements:')
     pprint.pprint(sub_tags)
 
-    print('\nDictionary of tags and their attributes in the lower level elements:')
+    print(
+    '\nDictionary of tags and their attributes in the lower level elements:')
     pprint.pprint(sub_tags_attrib)
