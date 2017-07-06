@@ -248,3 +248,42 @@ conn.close()
 hindu 156
 
 This result is not surprising. Bali is also famous for Hindu spirituality and culture.
+
+#### Most popular cuisines
+```
+import sqlite3
+conn = sqlite3.connect('osmproject.sqlite')
+cur = conn.cursor()
+cur.execute('''
+SELECT Nodes_tags.value, COUNT(*) as num
+FROM Nodes_tags
+    JOIN (SELECT DISTINCT(id) FROM Nodes_tags WHERE value = 'restaurant') as sub
+    ON Nodes_tags.id = sub.id
+WHERE Nodes_tags.key = 'cuisine'
+GROUP BY Nodes_tags.value
+ORDER BY num DESC
+LIMIT 15;
+''')
+for entry in cur.fetchall():
+    print entry[0].decode('utf-8'),entry[1]
+conn.close()
+```
+
+```
+regional                  79
+indonesian                47
+asian                     21
+seafood                   17
+international             15
+italian                   14
+chinese                   13
+japanese                  13
+vegetarian                11
+pizza                     7
+indonesian;international  6
+mexican                   6
+thai                      5
+indian                    4
+noodle                    4
+```
+These results are also correct. Indonesia has ~17,000 islands and each island has their own culture, food, dialect, etc. When I go to Bali, I always look for the local Bali food and you can find many good Balinese restaurants. There is one catch in the data. Some entries have value = 'indonesian;international'.
