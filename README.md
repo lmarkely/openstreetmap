@@ -141,3 +141,33 @@ print cur.fetchone()[0]
 conn.close()
 ```
 1295
+
+#### Top 10 contributing users
+```
+import sqlite3
+conn = sqlite3.connect('osmproject.sqlite')
+cur = conn.cursor()
+cur.execute('''
+SELECT union_node_ways.user, COUNT(*) as num
+FROM (SELECT user FROM Nodes UNION ALL SELECT user FROM Ways) as union_node_ways
+GROUP BY union_node_ways.user
+ORDER BY num DESC
+LIMIT 10;
+''')
+for entry in cur.fetchall():
+    print entry[0].decode('utf-8'),entry[1]
+conn.close()
+```
+
+```
+HEN TAM               234502
+everyone_sinks_starco 79438
+Werner17a             29672
+Bernhard Hiller       13752
+mahau                 13380
+robgeb                12702
+wwwFrank              11538
+FresRe                8782
+Eleonora Easter Henny 8478
+osmjessian            8261
+```
