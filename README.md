@@ -327,7 +327,8 @@ Overall, the data provided here agree with my experience in Bali. There are rela
 
 ## Notes
 This code is run in Python 2 to align with Udacity Course. Please setup the environment using openstreetmap.yaml.
-To test the codes, you can do one of the following two options:
+To test the codes, please first download the file from [here](https://www.openstreetmap.org/export#map=10/-8.5342/115.1182) and save as 'bali.osm'.
+Then, do one of the following two options:
 * Run the Jupyter Notebook 'OSM Project Code.ipynb'
 * Run `parse_shape_OSM_data_elements.py` as follows
     ```
