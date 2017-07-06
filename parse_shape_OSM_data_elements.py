@@ -2,7 +2,8 @@
 1. Use the iterparse to iteratively step through each top level element in XML
 2. Shaping each element into certain data structures
 3. Write each data structure to the appropriate csv files
-Reference: this code was modified from 'Case study: OpenStreetMap Data[SQL] Quiz 11'
+Reference: this code was modified from
+'Case study: OpenStreetMap Data[SQL] Quiz 11'
 Note: validation was run on 'sample.osm' and no response was obtained,
       indicating that the output structure matches the structure in schema.py
       The following code is run on 'bali.osm' without validation.
@@ -31,14 +32,17 @@ PROBLEMCHARS = re.compile(r'[=\+/&<>;\'"\?%#$@\,\. \t\r\n]')
 
 SCHEMA = schema.schema
 
-# Make sure the fields order in the csvs matches the column order in the sql table schema
-NODE_FIELDS = ['id', 'lat', 'lon', 'user', 'uid', 'version', 'changeset', 'timestamp']
+# Make sure the fields order in the csvs matches
+# the column order in the sql table schema
+NODE_FIELDS = ['id', 'lat', 'lon', 'user', 'uid',
+               'version', 'changeset', 'timestamp']
 NODE_TAGS_FIELDS = ['id', 'key', 'value', 'type']
 WAY_FIELDS = ['id', 'user', 'uid', 'version', 'changeset', 'timestamp']
 WAY_TAGS_FIELDS = ['id', 'key', 'value', 'type']
 WAY_NODES_FIELDS = ['id', 'node_id', 'position']
 
-def shape_element(element, node_fields=NODE_FIELDS, node_tags_fields=NODE_TAGS_FIELDS,
+def shape_element(element, node_fields=NODE_FIELDS,
+                  node_tags_fields=NODE_TAGS_FIELDS,
                   way_fields=WAY_FIELDS, way_tags_fields=WAY_TAGS_FIELDS,
                   problem_chars=PROBLEMCHARS, default_tag_type='regular'):
     """Clean and shape node or way XML element to Python dict"""
@@ -61,7 +65,8 @@ def shape_element(element, node_fields=NODE_FIELDS, node_tags_fields=NODE_TAGS_F
                     # use 'if is_street_name()' and 'if is_phone_num_'
                     # function to determine if the attribute matches
                     if is_street_name(tag):
-                        tag.attrib['v']=update_name(tag.attrib['v'],mapping_street)
+                        tag.attrib['v']=update_name(tag.attrib['v'],
+                                                    mapping_street)
                     if is_phone_num(tag):
                         tag.attrib['v']=update_phonenum(tag.attrib['v'])
                     tag_dict['value'] = tag.attrib['v']
@@ -106,7 +111,8 @@ def shape_element(element, node_fields=NODE_FIELDS, node_tags_fields=NODE_TAGS_F
                     # use 'if is_street_name()' and 'if is_phone_num_'
                     # function to determine if the attribute matches
                     if is_street_name(tag):
-                        tag.attrib['v']=update_name(tag.attrib['v'],mapping_street)
+                        tag.attrib['v']=update_name(tag.attrib['v'],
+                                                    mapping_street)
                     if is_phone_num(tag):
                         tag.attrib['v']=update_phonenum(tag.attrib['v'])
 
@@ -150,7 +156,8 @@ def validate_element(element, validator, schema=SCHEMA):
     """Raise ValidationError if element does not match schema"""
     if validator.validate(element, schema) is not True:
         field, errors = next(validator.errors.iteritems())
-        message_string = "\nElement of type '{0}' has the following errors:\n{1}"
+        message_string = "\nElement of type '{0}'" 
+                         "has the following errors:\n{1}"
         error_string = pprint.pformat(errors)
 
         raise Exception(message_string.format(field, error_string))
@@ -161,7 +168,8 @@ class UnicodeDictWriter(csv.DictWriter, object):
 
     def writerow(self, row):
         super(UnicodeDictWriter, self).writerow({
-            k: (v.encode('utf-8') if isinstance(v, unicode) else v) for k, v in row.iteritems()
+            k: (v.encode('utf-8') if isinstance(v, unicode) else v) for
+            k, v in row.iteritems()
         })
 
     def writerows(self, rows):
