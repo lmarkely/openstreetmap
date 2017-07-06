@@ -45,7 +45,20 @@ def shape_element(element, node_fields=NODE_FIELDS,
                   node_tags_fields=NODE_TAGS_FIELDS,
                   way_fields=WAY_FIELDS, way_tags_fields=WAY_TAGS_FIELDS,
                   problem_chars=PROBLEMCHARS, default_tag_type='regular'):
-    """Clean and shape node or way XML element to Python dict"""
+    """
+    Clean and shape node or way XML element to Python dict
+    Args:
+        element: element of xml file
+        node_fields (list): node attributes
+        node_tags_fields (list): node and its subelement attributes
+        way_fields (list): way attributes
+        way_tags_fields (list): way and its subelement attributes
+        way_nodes_fields (list): way and node attributes
+    Returns:
+        dict: key = node, node_tags, way, way_tags, way_nodes
+              value (dict): key = attributes
+                            value = attribute values
+    """
 
     # Handle secondary tags the same way for both node and way elements
     node_attribs, way_attribs = {}, {}
@@ -142,7 +155,14 @@ def shape_element(element, node_fields=NODE_FIELDS,
 #               Helper Functions                     #
 # ================================================== #
 def get_element(osm_file, tags=('node', 'way', 'relation')):
-    """Yield element if it is the right type of tag"""
+    """
+    Yield element if it is the right type of tag
+    Args:
+        osm_file: osm file being analyzed
+        tags (string): 'node', 'way', 'relation'
+    Returns:
+        element of xml file
+    """
 
     context = ET.iterparse(osm_file, events=('start', 'end'))
     _, root = next(context)
@@ -153,7 +173,16 @@ def get_element(osm_file, tags=('node', 'way', 'relation')):
 
 
 def validate_element(element, validator, schema=SCHEMA):
-    """Raise ValidationError if element does not match schema"""
+    """
+    Raise ValidationError if element does not match schema
+    Args:
+        element: element of xml file
+        validator: cerberus.Validator()
+        schema: schema from schema.py
+    Returns:
+        None if the schema matches schema.py
+        Error message otherwise
+    """
     if validator.validate(element, schema) is not True:
         field, errors = next(validator.errors.iteritems())
         message_string = "\nElement of type '{0}' has the following errors:\n{1}"
