@@ -287,3 +287,40 @@ indian                    4
 noodle                    4
 ```
 These results are also correct. Indonesia has ~17,000 islands and each island has their own culture, food, dialect, etc. When I go to Bali, I always look for the local Bali food and you can find many good Balinese restaurants. There is one catch in the data. Some entries have value = 'indonesian;international'.
+
+#### Most popular shops
+```
+import sqlite3
+conn = sqlite3.connect('osmproject.sqlite')
+cur = conn.cursor()
+cur.execute('''
+SELECT Nodes_tags.value, COUNT(*) as num
+FROM Nodes_tags
+    JOIN (SELECT DISTINCT(id) FROM Nodes_tags WHERE key = 'name') as sub
+    ON Nodes_tags.id = sub.id
+WHERE Nodes_tags.key = 'shop'
+GROUP BY Nodes_tags.value
+ORDER BY num DESC
+LIMIT 10;
+''')
+for entry in cur.fetchall():
+    print entry[0].decode('utf-8'),entry[1]
+conn.close()
+```
+
+```
+convenience 161
+supermarket 90
+clothes 58
+bakery 45
+massage 45
+beauty 36
+travel_agency 33
+motorcycle 31
+electronics 29
+yes 27
+```
+These results also make sense. The interesting part is motorcycle is in the top 10. In Bali, many foreigners come for a long vacation and many of them go around by riding a motorcycle. One catch in the data entries is the value 'yes'. Perhaps, these entries need to be revised.
+
+## Conclusions
+Overall, the data provided here agree with my experience in Bali. There are relatively high number of participants and the entries are not dominated by a few users. There are rooms for improvement in consistencies of the street names and phone numbers. In addition, some shop entries with value = 'yes' need to be revised. 
