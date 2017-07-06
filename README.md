@@ -10,7 +10,7 @@ This dataset is the map of Bali, one of the island of my homecountry, Indonesia.
 A sample dataset was audited to assess the problems in the Bali dataset. There are several main problems:
 * Inconsistent street names, e.g. 'Jalan Pantai Karang', 'Jl. Petitenget', 'Jl Sugirwa', 'Raya Kerobokan', 'Jalan Bedugul Sidakarya, Denpasar - Bali', 'tegalsari 37 pantai berawa ,Canggu', and 'Hanoman Road'.
 * Inconsistent country code and phone numbers, e.g. '+62 361 8719334', '0361 765188'.
-* Incorrect phone numbers, e.g. '0062286206', '+85 738 481 121', '-8.676387, 115.155813', '1 500 310'.
+* Invalid phone numbers, e.g. '0062286206', '+85 738 481 121', '-8.676387, 115.155813', '1 500 310'.
 
 #### Inconsistent street names
 The Indonesian of "street", "road", or "avenue" is "jalan". Unlike in English, we write "Jalan" in front of the street name as adjective comes after noun in Indonesian grammar. "Jalan" can be abbreviated as "Jl.", "JL", "Jl", etc. The dataset contains inconsistent street name with different abbreviation. Furthermore, some street names miss "Jalan" and use English words, e.g. "Road". Here, all of the street names are converted to Indonesian, and all of the prefix are harmonized to "Jalan", e.g. 'Jl. Petitenget' becomes 'Jalan Petitenget' and 'Hanoman Road' becomes 'Jalan Hanoman'. This update is performed by the following `update_name` function.
@@ -71,4 +71,25 @@ def update_phonenum(num):
                 return '+62' + num.lstrip('0')
     else:
         return num
+```
+#### Invalid phone numbers
+While exploring inconsistency of the phone numbers, I found 5 invalid phone numbers:
+* -8.676387, 115.155813
+* 1 500 310
+* +85 738 481 121
+* 07245465
+* +79684349570
+
+The function `is_phone_num` below checks the validity of the phone numbers and ignore all invalid phone numbers.
+```
+def is_phone_num(elem):
+    '''
+    Check if the element contains phone number.
+    '''    
+    if elem.attrib['k'] == "phone":
+        if not elem.attrib['v'].startswith(tuple(codes)):
+            print('Incorrect phone numbers:',elem.attrib['v'])
+
+    return (elem.attrib['k'] == "phone" and
+            elem.attrib['v'].startswith(tuple(codes)))
 ```
