@@ -26,6 +26,11 @@ codes = ['(+62)','(62)','(+62361)','62','p. +62','+62','0062','062','[+62]',
 def is_phone_num(elem):
     '''
     Check if the element contains phone number.
+    Args:
+        elem: element of the xml file
+    Returns:
+        True if the element contains phone number information
+        False otherwise
     '''
     if elem.attrib['k'] == "phone":
         if not elem.attrib['v'].startswith(tuple(codes)):
@@ -37,6 +42,12 @@ def is_phone_num(elem):
 def audit_phonenum_type(phonenum_types, phone_num):
     '''
     Classify the phone numbers based on types of errors.
+    Args:
+        phonenum_types (dict): dictionary with types of errors as keys,
+                                        phone numbers as values
+        phone_num (string): phone number
+    Returns:
+        phonenum_types (dict): dictionary updated with new phone number
     '''
     for code in codes:
         if phone_num.startswith(code):
@@ -46,6 +57,10 @@ def audit_phonenum_type(phonenum_types, phone_num):
 def update_phonenum(num):
     '''
     Fix the phone numbers based on the type of errors.
+    Args:
+        num (string): phone number 
+    Returns:
+        string: corrected phone number
     '''
     code_with62 = ['62','0062','062']
     code_no62 = ['021','0361','0368',
@@ -75,6 +90,10 @@ def update_phonenum(num):
 def audit(osmfile):
     '''
     Audit and fix the phone numbers.
+    Args:
+        osmfile: osm file being auditted
+    Returns:
+        phonenum_types (dict): dictionary updated with new phone numbers
     '''
     osm_file = open(osmfile, "r")
     phonenum_types = defaultdict(set)
