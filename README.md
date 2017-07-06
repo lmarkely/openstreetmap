@@ -94,9 +94,9 @@ def is_phone_num(elem):
             elem.attrib['v'].startswith(tuple(codes)))
 ```
 ## Data Overview and Additional Exploration
+Some statistics about the dataset are provided below.
 
 #### File sizes
-Some statistics about the dataset are provided below.
 ```
 bali.osm .............. 109.3 MB
 osmproject.sqlite ..... 86.2 MB
@@ -106,3 +106,13 @@ ways.csv .............. 4.9 MB
 ways_tags.csv ......... 3.8 MB
 ways_nodes.csv ........ 14.2 MB
 ```
+#### Number of nodes
+```
+import sqlite3
+conn = sqlite3.connect('osmproject.sqlite')
+cur = conn.cursor()
+cur.execute('SELECT COUNT(*) FROM Nodes;')
+print cur.fetchone()[0]
+conn.close()
+```
+489536
