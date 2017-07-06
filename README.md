@@ -6,7 +6,7 @@ Data source: [https://www.openstreetmap.org/export#map=10/-8.5342/115.1182](http
 
 This dataset is the map of Bali, one of the island of my homecountry, Indonesia. It's my top vacation destination and I am curious to explore the Bali data in OpenStreetMap and opportunites for improvement in the dataset.
 
-### Problems encountered in Bali map dataset
+## Problems Encountered in Bali Map Dataset
 A sample dataset was audited to assess the problems in the Bali dataset. There are several main problems:
 * Inconsistent street names, e.g. 'Jalan Pantai Karang', 'Jl. Petitenget', 'Jl Sugirwa', 'Raya Kerobokan', 'Jalan Bedugul Sidakarya, Denpasar - Bali', 'tegalsari 37 pantai berawa ,Canggu', and 'Hanoman Road'.
 * Inconsistent country code and phone numbers, e.g. '+62 361 8719334', '0361 765188'.
@@ -92,4 +92,17 @@ def is_phone_num(elem):
 
     return (elem.attrib['k'] == "phone" and
             elem.attrib['v'].startswith(tuple(codes)))
+```
+## Data Overview and Additional Exploration
+
+#### File sizes
+Some statistics about the dataset are provided below.
+```
+bali.osm .............. 109.3 MB
+osmproject.sqlite ..... 86.2 MB
+nodes.csv ............. 41.8 MB
+nodes_tags.csv ........ 1.5 MB
+ways.csv .............. 4.9 MB
+ways_tags.csv ......... 3.8 MB
+ways_nodes.csv ........ 14.2 MB
 ```
