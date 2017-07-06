@@ -171,3 +171,23 @@ FresRe                8782
 Eleonora Easter Henny 8478
 osmjessian            8261
 ```
+
+#### Number of users who have only 1 post
+```
+import sqlite3
+conn = sqlite3.connect('osmproject.sqlite')
+cur = conn.cursor()
+cur.execute('''
+SELECT COUNT(*)
+FROM
+    (SELECT COUNT(*) as num, union_node_ways.user
+     FROM (SELECT user FROM Nodes UNION ALL SELECT user FROM Ways) as union_node_ways
+     GROUP BY union_node_ways.user
+     HAVING num = 1);
+''')
+print cur.fetchone()[0]
+conn.close()
+```
+455
+
+The above statistics suggest that there are relatively high number of participants and the entries are not dominated by a few users.
