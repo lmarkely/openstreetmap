@@ -116,3 +116,14 @@ print cur.fetchone()[0]
 conn.close()
 ```
 489536
+
+#### Number of ways
+```
+import sqlite3
+conn = sqlite3.connect('osmproject.sqlite')
+cur = conn.cursor()
+cur.execute('SELECT COUNT(*) FROM Ways;')
+print cur.fetchone()[0]
+conn.close()
+```
+79414
