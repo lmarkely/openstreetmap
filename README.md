@@ -191,3 +191,37 @@ conn.close()
 455
 
 The above statistics suggest that there are relatively high number of participants and the entries are not dominated by a few users.
+
+The followings are statistics from further data exploration.
+
+#### Top 10 amenities
+```
+import sqlite3
+conn = sqlite3.connect('osmproject.sqlite')
+cur = conn.cursor()
+cur.execute('''
+SELECT value, COUNT(*) as num
+FROM Nodes_tags
+WHERE key = 'amenity'
+GROUP BY value
+ORDER BY num DESC
+LIMIT 10;
+''')
+for entry in cur.fetchall():
+    print entry[0].decode('utf-8'),entry[1]
+conn.close()
+```
+
+```
+restaurant        1106
+cafe              261
+place_of_worship  243
+atm               211
+bank              167
+fuel              111
+bar               81
+fast_food         79
+pharmacy          68
+parking           49
+```
+These statistics match with my experience in Bali.
