@@ -40,3 +40,35 @@ def update_name(name, mapping_street):
     else:
         return name
 ```
+#### Inconsistent country code in phone numbers
+The country code of Indonesia is +62. In order to call landline phones in Bali, we need to dial +62-361-####### where 361 is one of the area codes for Bali. If the phone number is cell phone, we need to dial, for instance, +62-81#-###-####. A lot of the phone numbers start with these codes, while others start with 0361 or 081, which could be used only when called from within Indonesia. To harmonize the phone numbers, all of them are converted to +62-local area code-number format such that 0361 765188 becomes +62361 765188. This update is performed by the following `update_phonenum` function.
+```
+def update_phonenum(num):
+    '''
+    Fix the phone numbers based on the type of errors.
+    '''
+    code_with62 = ['62','0062','062']
+    code_no62 = ['021','0361','0368',
+                '080','081','082','083','085','087','089']
+    if num.startswith('p. +62'):
+        return num.lstrip('p. ')
+    if num.startswith('('):
+        for char in '()':
+            num = num.replace(char,'')
+    if num.startswith('['):
+        for char in '[]':
+            num = num.replace(char,'')
+    if '(0)' in num:
+        num = num.replace('(0)','')
+
+    if num.startswith(tuple(code_with62)):
+        for code in code_with62:
+            if num.startswith(code):
+                return '+62' + num.lstrip(code)
+    elif num.startswith(tuple(code_no62)):
+        for code in code_no62:
+            if num.startswith(code):
+                return '+62' + num.lstrip('0')
+    else:
+        return num
+```
