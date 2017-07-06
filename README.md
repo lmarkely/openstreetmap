@@ -225,3 +225,26 @@ pharmacy          68
 parking           49
 ```
 These statistics match with my experience in Bali.
+
+#### Biggest religion
+```
+import sqlite3
+conn = sqlite3.connect('osmproject.sqlite')
+cur = conn.cursor()
+cur.execute('''
+SELECT Nodes_tags.value, COUNT(*) as num
+FROM Nodes_tags
+    JOIN (SELECT DISTINCT(id) FROM Nodes_tags WHERE value = 'place_of_worship') as sub
+    ON Nodes_tags.id = sub.id
+WHERE Nodes_tags.key = 'religion'
+GROUP BY Nodes_tags.value
+ORDER BY num DESC
+LIMIT 1;
+''')
+for entry in cur.fetchall():
+    print entry[0].decode('utf-8'),entry[1]
+conn.close()
+```
+hindu 156
+
+This result is not surprising. Bali is also famous for Hindu spirituality and culture.
