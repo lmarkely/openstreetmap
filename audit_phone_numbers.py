@@ -1,10 +1,12 @@
 """
 This code fixes the phone number.
-The function takes a string with phone number as an argument and returns the fixed phone number.
+The function takes a string with phone number as an argument and
+returns the fixed phone number.
 There are two types of inconsistencies:
 1. Inconsistent country code
 2. Incorrect phone number
-Reference: this code was modified from 'Case study: OpenStreetMap Data[SQL] Quiz 10'
+Reference: this code was modified from
+'Case study: OpenStreetMap Data[SQL] Quiz 10'
 """
 import csv
 import codecs
@@ -81,7 +83,8 @@ def audit(osmfile):
             for tag in elem.iter("tag"):
                 if is_phone_num(tag):
                     audit_phonenum_type(phonenum_types, tag.attrib['v'])
-                    # update tag.attrib['v'] with the return from update_phonenum()
+                    # update tag.attrib['v'] with the
+                    # return from update_phonenum()
                     tag.attrib['v'] = update_phonenum(tag.attrib['v'])
 
     osm_file.close()
