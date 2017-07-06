@@ -323,4 +323,7 @@ yes 27
 These results also make sense. The interesting part is motorcycle is in the top 10. In Bali, many foreigners come for a long vacation and many of them go around by riding a motorcycle. One catch in the data entries is the value 'yes'. Perhaps, these entries need to be revised.
 
 ## Conclusions
-Overall, the data provided here agree with my experience in Bali. There are relatively high number of participants and the entries are not dominated by a few users. There are rooms for improvement in consistencies of the street names and phone numbers. In addition, some shop entries with value = 'yes' need to be revised. 
+Overall, the data provided here agree with my experience in Bali. There are relatively high number of participants and the entries are not dominated by a few users. There are rooms for improvement in consistencies of the street names and phone numbers. In addition, some shop entries with value = 'yes' need to be revised.
+
+## Notes
+This code is run in Python 2 to align with Udacity Course. Please setup the environment using openstreetmap.yaml.
