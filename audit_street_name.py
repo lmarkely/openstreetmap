@@ -1,12 +1,13 @@
 '''
 This code fixes the street names in OSM file.
-The function takes a string with street name as an argument and returns the fixed name
-There are four major types of errors:
+The function takes a string with street name as an argument and returns the
+fixed name. There are four major types of errors:
 1. Inconsistency: abbreviation, capitalization, punctuation
 2. Missing the word 'Jalan', Indonesian of 'Street'.
 3. Inclusion of city and province names
 4. Using English word, 'Road'
-Reference: this code was modified from 'Case study: OpenStreetMap Data[SQL] Quiz 10'
+Reference: this code was modified from
+'Case study: OpenStreetMap Data[SQL] Quiz 10'
 '''
 import csv
 import codecs
@@ -43,7 +44,8 @@ def audit_street_type(street_types, street_name):
     if street_name.split(' ')[0] != 'Jalan':
         if street_name.split(' ')[0] in mapping_street.keys():
             street_types[street_name.split(' ')[0]].add(street_name)
-        elif len(street_name.split(',')) > 1 and street_name.split(',')[1][:4] == ' JL.':
+        elif (len(street_name.split(',')) > 1 and
+                 street_name.split(',')[1][:4] == ' JL.'):
             street_types['JL._invert'].add(street_name)
         elif street_name.split(' ')[0][:3] == 'Jl.':
             street_types['Jl_no_space'].add(street_name)
@@ -63,7 +65,8 @@ def update_name(name, mapping_street):
     '''
     if name.split(' ')[0] != 'Jalan':
         if name.split(' ')[0] in mapping_street.keys():
-            return name.replace(name.split(' ')[0],mapping_street[name.split(' ')[0]])
+            return (name.replace(name.split(' ')[0],
+                    mapping_street[name.split(' ')[0]]))
         elif len(name.split(',')) > 1 and name.split(',')[1][:4] == ' JL.':
             name_list = name.split(',')
             return name_list[1].replace(' JL.','Jalan') + ' ' + name_list[0]
@@ -93,7 +96,8 @@ def audit(osmfile):
                 if is_street_name(tag):
                     audit_street_type(street_types, tag.attrib['v'])
                     # update tag.attrib['v'] with the return from update_name()
-                    tag.attrib['v'] = update_name(tag.attrib['v'],mapping_street)
+                    tag.attrib['v'] = update_name(tag.attrib['v'],
+                                                  mapping_street)
 
     osm_file.close()
     return street_types
