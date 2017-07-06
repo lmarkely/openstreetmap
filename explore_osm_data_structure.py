@@ -19,6 +19,10 @@ def count_tags(elem):
     '''
     For each input element, return a dict with the name of tags
     in the lower level elements as keys and frequency as values.
+    Args:
+        elem: element of xml file
+    Returns:
+        tag_dict (dict): keys = tags, values = frequency of tags
     '''
     tag_dict = {}
     for sub_elem in elem:
@@ -29,6 +33,10 @@ def elem_attrib(elem):
     '''
     For each input element, return a dict with the name of tags
     in the lower level elements as keys and attributes as values.
+    Args:
+        elem: element of xml file
+    Returns:
+        attrib_dict (dict): keys = tags, values = attributes
     '''
     attrib_dict = {}
     for sub_elem in elem:
@@ -42,6 +50,11 @@ def elem_attrib(elem):
 
 def merge_dict(dict1,dict2):
     '''
+    Args:
+        dict1 (dict): one of the two dictionaries
+        dict2 (dict): one of the two dictionaries
+    Returns:
+        dict: merged dict1 and dict2
     Reference: this code was copied and modified from
     https://stackoverflow.com/questions/1495510/
     combining-dictionaries-of-lists-in-python
