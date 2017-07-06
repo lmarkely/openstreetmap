@@ -156,8 +156,7 @@ def validate_element(element, validator, schema=SCHEMA):
     """Raise ValidationError if element does not match schema"""
     if validator.validate(element, schema) is not True:
         field, errors = next(validator.errors.iteritems())
-        message_string = "\nElement of type '{0}'" 
-                         "has the following errors:\n{1}"
+        message_string = "\nElement of type '{0}' has the following errors:\n{1}"
         error_string = pprint.pformat(errors)
 
         raise Exception(message_string.format(field, error_string))
