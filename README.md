@@ -127,3 +127,17 @@ print cur.fetchone()[0]
 conn.close()
 ```
 79414
+
+#### Number of unique users
+```
+import sqlite3
+conn = sqlite3.connect('osmproject.sqlite')
+cur = conn.cursor()
+cur.execute('''
+SELECT COUNT(DISTINCT(union_node_ways.uid))
+FROM (SELECT uid FROM Nodes UNION ALL SELECT uid FROM Ways) as union_node_ways;
+''')
+print cur.fetchone()[0]
+conn.close()
+```
+1295
