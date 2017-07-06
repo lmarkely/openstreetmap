@@ -158,19 +158,7 @@ for entry in cur.fetchall():
     print entry[0].decode('utf-8'),entry[1]
 conn.close()
 ```
-
-```
-HEN TAM               234502
-everyone_sinks_starco 79438
-Werner17a             29672
-Bernhard Hiller       13752
-mahau                 13380
-robgeb                12702
-wwwFrank              11538
-FresRe                8782
-Eleonora Easter Henny 8478
-osmjessian            8261
-```
+![Plot](https://github.com/lmarkely/openstreetmap/blob/master/Users%20stats.png)
 
 #### Number of users who have only 1 post
 ```
@@ -211,19 +199,8 @@ for entry in cur.fetchall():
     print entry[0].decode('utf-8'),entry[1]
 conn.close()
 ```
+![Plot](https://github.com/lmarkely/openstreetmap/blob/master/Amenities%20stats.png)
 
-```
-restaurant        1106
-cafe              261
-place_of_worship  243
-atm               211
-bank              167
-fuel              111
-bar               81
-fast_food         79
-pharmacy          68
-parking           49
-```
 These statistics match with my experience in Bali.
 
 #### Biggest religion
@@ -269,23 +246,8 @@ for entry in cur.fetchall():
 conn.close()
 ```
 
-```
-regional                  79
-indonesian                47
-asian                     21
-seafood                   17
-international             15
-italian                   14
-chinese                   13
-japanese                  13
-vegetarian                11
-pizza                     7
-indonesian;international  6
-mexican                   6
-thai                      5
-indian                    4
-noodle                    4
-```
+![Plot](https://github.com/lmarkely/openstreetmap/blob/master/Cuisine%20stats.png)
+
 These results are also correct. Indonesia has ~17,000 islands and each island has their own culture, food, dialect, etc. When I go to Bali, I always look for the local Bali food and you can find many good Balinese restaurants. There is one catch in the data. Some entries have value = 'indonesian;international'.
 
 #### Most popular shops
@@ -307,19 +269,8 @@ for entry in cur.fetchall():
     print entry[0].decode('utf-8'),entry[1]
 conn.close()
 ```
+![Plot](https://github.com/lmarkely/openstreetmap/blob/master/Shops%20stats.png)
 
-```
-convenience 161
-supermarket 90
-clothes 58
-bakery 45
-massage 45
-beauty 36
-travel_agency 33
-motorcycle 31
-electronics 29
-yes 27
-```
 These results also make sense. The interesting part is motorcycle is in the top 10. In Bali, many foreigners come for a long vacation and many of them go around by riding a motorcycle. One catch in the data entries is the value 'yes'. Perhaps, these entries need to be revised.
 
 ## Ideas for Improvement
