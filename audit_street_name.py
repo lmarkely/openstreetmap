@@ -34,12 +34,23 @@ mapping_street = {  'Jl.': 'Jalan',
 def is_street_name(elem):
     '''
     #Check if the element contains a street name.
+    Args:
+        elem: element of the xml file
+    Returns:
+        True if the element contains street name
+        False otherwise
     '''
     return (elem.attrib['k'] == 'addr:street')
 
 def audit_street_type(street_types, street_name):
     '''
     Classify the types of errors and store in a dictionary.
+    Args:
+        street_types (dict): dictionary with types of errors as keys,
+                                        street names as values
+        street_name (string): street name
+    Returns:
+        street_types (dict): dictionary updated with new street names
     '''
     if street_name.split(' ')[0] != 'Jalan':
         if street_name.split(' ')[0] in mapping_street.keys():
@@ -62,6 +73,12 @@ def audit_street_type(street_types, street_name):
 def update_name(name, mapping_street):
     '''
     Correct the street name based on the type of errors.
+    Args:
+        name (string): street name
+        mapping_street (dict): key = incorrect prefix
+                               value = correct prefix
+    Returns:
+        string: corrected street name
     '''
     if name.split(' ')[0] != 'Jalan':
         if name.split(' ')[0] in mapping_street.keys():
@@ -87,6 +104,10 @@ def update_name(name, mapping_street):
 def audit(osmfile):
     '''
     Audit and fix the street name.
+    Args:
+        osmfile: osm file being auditted
+    Returns:
+        street_types (dict): dictionary updated with new street names
     '''
     osm_file = open(osmfile, "r")
     street_types = defaultdict(set)
