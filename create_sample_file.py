@@ -9,7 +9,10 @@ k = 10 # Parameter: take every k-th top level element
 
 def get_element(osm_file, tags=('node', 'way', 'relation')):
     '''Yield element if it is the right type of tag
-
+    Args:
+        osmfile: osm file being auditted
+    Returns:
+        element if its tag is node, way, or relation
     Reference:
     http://stackoverflow.com/questions/3095434/inserting-newlines-in-
     xml-file-generated-via-xml-etree-elementtree-in-python
