@@ -7,7 +7,7 @@ Bali, Indonesia
 
 Data source: [https://www.openstreetmap.org/export#map=10/-8.5342/115.1182](https://www.openstreetmap.org/export#map=10/-8.5342/115.1182)
 
-This project involves data wrangling and analysis of Bali OpenStreetMap Data. Bali is one of the island of my home country, Indonesia. This project is very close to my heart as Bali is my top vacation destination; I am curious to explore the Bali dataset in OpenStreetMap and opportunites for improvement in the dataset. The suggestions for improvement to the dataset are provided based on my personal experience in Bali.
+Data wrangling and analysis of Bali OpenStreetMap Data. Bali is my top vacation destination; I am curious to analyze the data and provide ideas to improve the dataset. The ideas are based on my personal experience in Bali.
 
 ## Problems Encountered in Bali Map Dataset
 A sample dataset was audited to assess the problems in the Bali dataset. There are several main problems:
