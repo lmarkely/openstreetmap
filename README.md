@@ -2,6 +2,7 @@
 ### Map area
 
 ![Plot](https://github.com/lmarkely/openstreetmap/blob/master/Bali%20wallpaper.jpg)
+
 Bali, Indonesia
 
 Data source: [https://www.openstreetmap.org/export#map=10/-8.5342/115.1182](https://www.openstreetmap.org/export#map=10/-8.5342/115.1182)
