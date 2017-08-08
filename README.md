@@ -279,23 +279,19 @@ These results also make sense. The interesting part is motorcycle is in the top 
 ## Ideas for Improvement
 Based on the above data exploration, some of the issues in the data are accuracy and consistency. In addition, the dataset would benefit from participation of larger number of users. Some ideas that could be explored to improve this dataset include:
 1. Integration with popular games or apps, such as Pokemon Go, Snap Map, and others to encourage more user participation.
-
-Benefits:
-    * Engaging more users to participate
-    * Some apps, like Pokemon Go encourages users to go to some places that they usually don't explore. This approach may provide more coverage of areas that don't have many nodes and ways in the dataset.
-
-Anticipated problems:
-    * The accuracy of the data from this approach may not be very high as users are more likely to be focused on the game and app, rather than entering accurate data.
-    * Similarly, the data entry may also not be very consistent as users are multi tasking with the games and apps.
-2. Collaboration with local shops, restaurants, hotels, etc to provide discount to users who come and help enter the data into the Openstreetmap project.
-
-Benefits:
-    * Bring more business to these shops, restaurants, hotels, etc
-    * Encourage more users to participate
-
-Anticipated problems:
-    * This approach may be more expensive as it needs cost to provide discount and promote the program.
-    * A system needs to be built such that only users who provide accurate and consistent data entry receives the discount.
+    * Benefits:
+        * Engaging more users to participate
+        * Some apps, like Pokemon Go encourages users to go to some places that they usually don't explore. This approach may provide more coverage of areas that don't have many nodes and ways in the dataset.
+    * Anticipated problems:
+        * The accuracy of the data from this approach may not be very high as users are more likely to be focused on the game and app, rather than entering accurate data.
+        * Similarly, the data entry may also not be very consistent as users are multi tasking with the games and apps.
+2. Collaboration with local shops, restaurants, hotels, etc to provide discount to users who come and help enter the data into the Openstreetmap project. 
+    * Benefits:
+        * Bring more business to these shops, restaurants, hotels, etc
+        * Encourage more users to participate
+    * Anticipated problems:
+        * This approach may be more expensive as it needs cost to provide discount and promote the program.
+        * A system needs to be built such that only users who provide accurate and consistent data entry receives the discount.
 
 ## Conclusions
 Overall, the data provided here agree with my experience in Bali. There are relatively high number of participants and the entries are not dominated by a few users. There are rooms for improvement in consistencies of the street names and phone numbers. In addition, some shop entries with value = 'yes' need to be revised.
