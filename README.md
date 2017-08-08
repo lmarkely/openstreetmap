@@ -282,6 +282,7 @@ Based on the above data exploration, some of the issues in the data are accuracy
 Benefits:
     * Engaging more users to participate
     * Some apps, like Pokemon Go encourages users to go to some places that they usually don't explore. This approach may provide more coverage of areas that don't have many nodes and ways in the dataset.
+
 Anticipated problems:
     * The accuracy of the data from this approach may not be very high as users are more likely to be focused on the game and app, rather than entering accurate data.
     * Similarly, the data entry may also not be very consistent as users are multi tasking with the games and apps.
@@ -289,6 +290,7 @@ Anticipated problems:
 Benefits:
     * Bring more business to these shops, restaurants, hotels, etc
     * Encourage more users to participate
+
 Anticipated problems:
     * This approach may be more expensive as it needs cost to provide discount and promote the program.
     * A system needs to be built such that only users who provide accurate and consistent data entry receives the discount.
